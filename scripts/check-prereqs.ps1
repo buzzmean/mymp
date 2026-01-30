@@ -1,50 +1,39 @@
 $ErrorActionPreference = "Stop"
 
-Write-Host "Checking prerequisites..." -ForegroundColor Cyan
+Write-Host "Проверка зависимостей..." -ForegroundColor Cyan
 
-$missingRequired = @()
-$missingOptional = @()
+$missing = @()
 
 # PowerShell version
 if ($PSVersionTable.PSVersion.Major -lt 5) {
-  $missingRequired += "PowerShell 5+"
+  $missing += "PowerShell 5+"
+}
+
+# Docker
+if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
+  $missing += "Docker Desktop"
+}
+
+# 7-Zip
+if (-not (Get-Command 7z -ErrorAction SilentlyContinue)) {
+  $missing += "7-Zip"
 }
 
 # Git
 if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
-  $missingRequired += "Git"
+  $missing += "Git"
 }
 
-# Internet
-$internetOk = $false
-try {
-  $internetOk = Test-Connection -ComputerName 1.1.1.1 -Count 1 -Quiet
-} catch {
-  $internetOk = $false
-}
-if (-not $internetOk) {
-  $missingRequired += "Internet access"
-}
-
-# Docker (optional)
-if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
-  $missingOptional += "Docker Desktop"
-}
-
-# 7-Zip (optional)
-if (-not (Get-Command 7z -ErrorAction SilentlyContinue)) {
-  $missingOptional += "7-Zip"
-}
-
-if ($missingOptional.Count -gt 0) {
-  Write-Host "Optional missing:" -ForegroundColor Yellow
-  $missingOptional | ForEach-Object { Write-Host " - $_" }
-}
-
-if ($missingRequired.Count -gt 0) {
-  Write-Host "Required missing:" -ForegroundColor Red
-  $missingRequired | ForEach-Object { Write-Host " - $_" }
+if ($missing.Count -gt 0) {
+  Write-Host "Не найдены компоненты:" -ForegroundColor Yellow
+  $missing | ForEach-Object { Write-Host " - $_" }
+  Write-Host "" 
+  Write-Host "Установите:" -ForegroundColor Yellow
+  Write-Host "- PowerShell: https://learn.microsoft.com/powershell/" 
+  Write-Host "- Docker Desktop: https://www.docker.com/products/docker-desktop/" 
+  Write-Host "- 7-Zip: https://www.7-zip.org/" 
+  Write-Host "- Git: https://git-scm.com/downloads" 
   exit 1
 }
 
-Write-Host "All required prerequisites are available." -ForegroundColor Green
+Write-Host "Все зависимости найдены." -ForegroundColor Green

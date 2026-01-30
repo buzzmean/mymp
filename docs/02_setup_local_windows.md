@@ -31,20 +31,3 @@ notepad docker/.env
 ```powershell
 .\scripts\setup.ps1
 ```
-
-## Club mode (no reboot)
-
-Этот режим запускается без Docker Desktop и без 7-Zip.
-
-1) Убедитесь, что есть интернет и Git.
-2) Запустите установку FXServer (используется встроенный Expand-Archive):
-
-```powershell
-.\scripts\setup.ps1
-```
-
-3) Запускайте txAdmin без БД:
-
-```powershell
-.\scripts\start-txadmin.ps1
-```

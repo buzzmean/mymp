@@ -4,19 +4,16 @@ $fxDir = Join-Path "runtime" "fxserver"
 $exe = Join-Path $fxDir "FXServer.exe"
 
 if (-not (Test-Path $exe)) {
-  Write-Host "FXServer not found. Run scripts/setup.ps1 first." -ForegroundColor Red
+  Write-Host "FXServer не найден. Запустите сначала scripts/setup.ps1" -ForegroundColor Red
   exit 1
 }
 
-Write-Host "Starting FXServer and txAdmin..." -ForegroundColor Cyan
+Write-Host "Запуск FXServer и txAdmin..." -ForegroundColor Cyan
 Write-Host "" 
-Write-Host "Open txAdmin in your browser:" -ForegroundColor Yellow
-Write-Host "http://127.0.0.1:40120" -ForegroundColor Yellow
-Write-Host "" 
-Write-Host "Next steps:" -ForegroundColor Yellow
-Write-Host "1) Get a key from https://keymaster.fivem.net" 
-Write-Host "2) Choose recipe: Local file -> recipes/qbcore.yaml" 
-Write-Host "3) If you run DB, enter credentials from docker/.env" 
+Write-Host "Дальше в txAdmin:" -ForegroundColor Yellow
+Write-Host "1) Получите ключ: https://keymaster.fivem.net" 
+Write-Host "2) Выберите рецепт: Local file -> recipes/qbcore.yaml" 
+Write-Host "3) Введите доступы БД из docker/.env" 
 Write-Host "" 
 
 Start-Process -FilePath $exe -WorkingDirectory $fxDir -ArgumentList @(
