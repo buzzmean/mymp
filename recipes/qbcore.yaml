@@ -1,0 +1,130 @@
+$schema: https://raw.githubusercontent.com/tabarra/txAdmin-recipe/master/schema.json
+name: QBCore (Local)
+author: mymp
+version: 1.0.0
+description: QBCore framework setup with oxmysql, pma-voice, qb-radio
+
+variables:
+  db_name: qbcore
+  db_user: qbcore
+  db_password: qbcore
+  db_host: 127.0.0.1
+  db_port: 3306
+
+steps:
+  - action: clean_cache
+  - action: ensure_dir
+    path: server-data/resources
+
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    dest: server-data
+
+  - action: download_gh_release
+    src: https://github.com/overextended/oxmysql
+    version: v2.12.0
+    dest: server-data/resources/[standalone]/oxmysql
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-core
+    dest: server-data/resources/[qb]/qb-core
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-smallresources
+    dest: server-data/resources/[qb]/qb-smallresources
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-policejob
+    dest: server-data/resources/[qb]/qb-policejob
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-ambulancejob
+    dest: server-data/resources/[qb]/qb-ambulancejob
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-houses
+    dest: server-data/resources/[qb]/qb-houses
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-apartments
+    dest: server-data/resources/[qb]/qb-apartments
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-vehicleshop
+    dest: server-data/resources/[qb]/qb-vehicleshop
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-garages
+    dest: server-data/resources/[qb]/qb-garages
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-spawn
+    dest: server-data/resources/[qb]/qb-spawn
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-inventory
+    dest: server-data/resources/[qb]/qb-inventory
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-weathersync
+    dest: server-data/resources/[qb]/qb-weathersync
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-cityhall
+    dest: server-data/resources/[qb]/qb-cityhall
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-vehicletuning
+    dest: server-data/resources/[qb]/qb-vehicletuning
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-vehiclekeys
+    dest: server-data/resources/[qb]/qb-vehiclekeys
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-phone
+    dest: server-data/resources/[qb]/qb-phone
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-banking
+    dest: server-data/resources/[qb]/qb-banking
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-bossmenu
+    dest: server-data/resources/[qb]/qb-bossmenu
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-management
+    dest: server-data/resources/[qb]/qb-management
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-adminmenu
+    dest: server-data/resources/[qb]/qb-adminmenu
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-input
+    dest: server-data/resources/[qb]/qb-input
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-menu
+    dest: server-data/resources/[qb]/qb-menu
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-target
+    dest: server-data/resources/[qb]/qb-target
+
+  - action: download_github
+    src: https://github.com/AvarianKnight/pma-voice
+    dest: server-data/resources/[standalone]/pma-voice
+
+  - action: download_github
+    src: https://github.com/qbcore-framework/qb-radio
+    dest: server-data/resources/[qb]/qb-radio
+
+  - action: db_import
+    src: server-data/resources/[qb]/qb-core/qbcore.sql
+    host: ${db_host}
+    port: ${db_port}
+    user: ${db_user}
+    pass: ${db_password}
+    name: ${db_name}

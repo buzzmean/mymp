@@ -1,0 +1,47 @@
+# Base configuration (template). txAdmin recipe will generate server.cfg.
+# Copy/adjust this file later if you want manual control.
+
+# Essential mode
+sv_hostname "mymp QBCore Server"
+sv_maxclients 32
+
+# Licensing
+sv_licenseKey "REPLACE_WITH_KEYMASTER_KEY"
+
+# Database
+set mysql_connection_string "mysql://qbcore:password@127.0.0.1:3306/qbcore?charset=utf8mb4"
+
+# Onesync
+set onesync on
+
+# Resources
+ensure oxmysql
+ensure qb-core
+ensure qb-smallresources
+ensure qb-policejob
+ensure qb-ambulancejob
+ensure qb-houses
+ensure qb-apartments
+ensure qb-vehicleshop
+ensure qb-garages
+ensure qb-spawn
+ensure qb-inventory
+ensure qb-weathersync
+ensure qb-cityhall
+ensure qb-vehicletuning
+ensure qb-vehiclekeys
+ensure qb-phone
+ensure qb-banking
+ensure qb-bossmenu
+ensure qb-management
+ensure qb-adminmenu
+ensure qb-input
+ensure qb-menu
+ensure qb-target
+ensure pma-voice
+ensure qb-radio
+
+# Permissions (simple ACE example)
+add_ace group.admin command allow
+add_ace group.admin command.quit deny
+add_principal identifier.fivem:YOUR_FIVEM_ID group.admin

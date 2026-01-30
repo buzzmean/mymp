@@ -1,0 +1,21 @@
+# Runtime and server data
+artifacts/
+server-data/
+txData/
+cache/
+logs/
+*.log
+runtime/
+
+# Docker env
+.env
+docker/.env
+
+# Downloaded builds/resources
+*.zip
+*.7z
+*.rar
+
+# OS / editor
+.DS_Store
+Thumbs.db
