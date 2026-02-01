@@ -6,6 +6,12 @@ cache/
 logs/
 *.log
 runtime/
+runtime/mariadb/
+runtime/mariadb-data/
+runtime/logs/
+runtime/tools/
+runtime/*.pid
+runtime/*.env
 
 # Docker env
 .env
